@@ -1,0 +1,13 @@
+<launch>
+    <!-- Iniciar el LIDAR -->
+    <include file="$(find s-tracker)/launch/X4.launch">
+    </include>
+    
+    <!-- Ejecutar el codigo del LIDAR follower_lidar.py -->
+    <node name="select_mode_color_detector" pkg="s-tracker" type="select_mode_color_detector.py"/>
+    
+    <!-- Ejecutar arduino -->
+    <node name="serial_node" pkg="rosserial_python" type="serial_node.py">
+        <param name="port" value="/dev/ttyACM0" />
+    </node>
+</launch>

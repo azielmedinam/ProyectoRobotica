@@ -1,0 +1,14 @@
+<launch>
+    <!-- Iniciar el LIDAR -->
+    <include file="$(find ydlidar_ros_driver)/launch/X4.launch">
+        <arg name="port" value="/dev/ttyUSB0" />
+    </include>
+    
+    <!-- Ejecutar el codigo del LIDAR follower_lidar.py -->
+    <node name="follower_lidar" pkg="s-tracker" type="follower_lidar.py"/>
+    
+    <!-- Ejecutar arduino -->
+    <node name="serial_node" pkg="rosserial_python" type="serial_node.py">
+        <param name="port" value="/dev/ttyACM0" />
+    </node>
+</launch>
